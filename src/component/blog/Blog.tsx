@@ -22,7 +22,10 @@ export default function Blog (props: IBlogProps) {
             }
         }).then((posts) => {
             console.log(posts);
-            setPosts(posts.slice(0, 8));
+            const postsAuthor = posts.slice(0,4).map((post : any) => {
+                return {...post, author : 'Hugo'};
+            });
+            setPosts(postsAuthor);
         }).catch(() => {
             console.error('Error');
         })
