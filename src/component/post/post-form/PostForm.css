@@ -1,0 +1,22 @@
+.post-form {
+    background: #F3E0BE;
+    max-width: 700px;
+    min-width: 400px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.post-form label {
+    display: block;
+    margin: 10px auto;
+    text-align: center;
+    font-weight: bold;
+}
+
+.post-form input,
+.post-form textarea,
+.post-form select {
+    width: 90%;
+    margin: auto;
+}
+
