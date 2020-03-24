@@ -1,15 +1,14 @@
 import * as React from 'react';
 import './Post.css'
+import { IPost } from './post-utils';
 
-export interface IPostProps {
-}
 
-export default function Post (props: IPostProps) {
+export default function Post (props: IPost) {
   return (
     <article className="post">
-        <h1>Title</h1>
+        <h1>{props.title}</h1>
         <div>
-            <div className="author">Author</div>
+            <div className="author">{props.author}</div>
         </div>
     </article>
   );

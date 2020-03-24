@@ -1,11 +1,6 @@
 import * as React from 'react';
 import './PostForm.css';
-
-export interface IPost {
-    title : string,
-    content: string,
-    author: string
-}
+import { IPost } from '../post-utils';
 
 export interface IPostFormProps {
 }
