@@ -5,7 +5,7 @@ import { IPost } from './post-utils';
 
 export default function Post (props: IPost) {
   return (
-    <article className="post">
+    <article className="post" onClick={props.onclick}>
         <h1>{props.title}</h1>
         <div>
             <div className="author">{props.author}</div>
