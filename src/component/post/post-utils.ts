@@ -7,4 +7,5 @@ export interface IPost {
 }
 
 export const EMPTY_POST_ARRAY : Array<IPost> = [];
+export const EMPTY_POST : IPost = {title : '', content : '', author : ''};
 export const NO_ID : any = null;
