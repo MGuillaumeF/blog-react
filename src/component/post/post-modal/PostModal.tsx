@@ -10,21 +10,25 @@ export default function PostModal (props: IPostModalProps) {
   let [loadedPost, setLoadedPost] = React.useState(EMPTY_POST)
   React.useEffect(() => {
     if (props.id !== null) {
-      fetch(`https://jsonplaceholder.typicode.com/posts/${props.id}`,
-        { 
+      if (!loadedPost.id) {
+        fetch(`https://jsonplaceholder.typicode.com/posts/${props.id}`,
+          { 
             method: 'GET',
             mode: 'cors'
-        }
-      ).then(response => {
+          }
+        ).then(response => {
           if (response.status === 200) {
               return response.json();
           }
-      }).then((post) => {
+        }).then((post) => {
+          console.log(post);
           setLoadedPost(post);
-      }).catch(() => {
+        }).catch(() => {
           console.error('Error');
-      });
-    }
+        });
+      }
+      }
+      
   }); 
   return (
     props.id !== null ? (

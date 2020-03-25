@@ -12,24 +12,26 @@ export default function Blog (props: IBlogProps) {
     let [posts, setPosts] = React.useState(EMPTY_POST_ARRAY);
     let [selectedId, setSelectedId] = React.useState(NO_ID);
     React.useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/posts',
-            { 
-                method: 'GET',
-                mode: 'cors'
-            }
-        ).then(response => {
-            if (response.status === 200) {
-                return response.json();
-            }
-        }).then((posts) => {
-            //console.log(posts);
-            const postsAuthor = posts.slice(0,4).map((post : any) => {
-                return {...post, author : 'Hugo'};
+        if (posts.length === 0) {
+            fetch('https://jsonplaceholder.typicode.com/posts',
+                { 
+                    method: 'GET',
+                    mode: 'cors'
+                }
+            ).then(response => {
+                if (response.status === 200) {
+                    return response.json();
+                }
+            }).then((posts) => {
+                console.log(posts);
+                const postsAuthor = posts.slice(0,4).map((post : any) => {
+                    return {...post, author : 'Hugo'};
+                });
+                setPosts(postsAuthor);
+            }).catch(() => {
+                console.error('Error');
             });
-            setPosts(postsAuthor);
-        }).catch(() => {
-            console.error('Error');
-        })
+        }
     });
     const selectId = (id : any) => {
         setSelectedId(id);
