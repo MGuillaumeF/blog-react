@@ -11,6 +11,8 @@ export interface IBlogProps {
 export default function Blog (props: IBlogProps) {
     let [posts, setPosts] = React.useState(EMPTY_POST_ARRAY);
     let [selectedId, setSelectedId] = React.useState(NO_ID);
+    let [toggle, setToggle] = React.useState(false);
+
     React.useEffect(() => {
         if (posts.length === 0) {
             fetch('https://jsonplaceholder.typicode.com/posts',
@@ -35,6 +37,10 @@ export default function Blog (props: IBlogProps) {
     });
     const selectId = (id : any) => {
         setSelectedId(id);
+        setToggle(true);
+    };
+    const toggleModale = () => {
+        setToggle(false);
     };
   return (
     <div>
@@ -42,7 +48,9 @@ export default function Blog (props: IBlogProps) {
         <PostForm />
         </section>
         <h2 className="text-center my-5">Select a post ...</h2>
-        <PostModal id={selectedId} />
+        <PostModal id={selectedId} 
+                        close={toggleModale}
+                        show={toggle}/>
         <section className="Posts">
             {
                 posts.map((post :IPost) => {
