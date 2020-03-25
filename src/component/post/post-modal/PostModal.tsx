@@ -29,8 +29,7 @@ export default function PostModal (props: IPostModalProps) {
           console.error('Error');
         });
       }
-      }
-      
+    }
   }); 
   return (
     props.id !== null && props.show ? (

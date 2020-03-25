@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './PostForm.css';
-import { IPost } from '../post-utils';
+import { IPost, EMPTY_POST } from '../post-utils';
 
 export interface IPostFormProps {
 }
@@ -10,13 +10,31 @@ export default function PostForm (props: IPostFormProps) {
         title: '',
         content: '',
         author: 'Hugo'
-
     }
     let [post, setPost] = React.useState(postExample);
+
     const onChange = (value : string, key : string) => {
-        let postUpdated : any = Object.assign({}, post);
+        let postUpdated : any = {...post};
         postUpdated[key] = value;
         setPost(postUpdated);
+    };
+    const postArticle = (event : any) => {
+        fetch(`https://jsonplaceholder.typicode.com/posts/`,
+          { 
+            method: 'POST',
+            mode: 'cors',
+            body : JSON.stringify(post)
+          }
+        ).then(response => {
+          if (response.status === 201) {
+              return response.json();
+          }
+        }).then((post) => {
+          console.log(post);
+        }).catch(() => {
+          console.error('Error');
+        });
+        setPost(EMPTY_POST);
     };
   return (
     <div className="post-form form-group">
@@ -31,7 +49,7 @@ export default function PostForm (props: IPostFormProps) {
             <option value="Juliette">Juliette</option>
             <option value="John">John</option>
         </select>
-        <button className="btn btn-success my-3">Add an article</button>
+        <button className="btn btn-success my-3" onClick={postArticle}>Add an article</button>
     </div>
   );
 }
