@@ -2,6 +2,7 @@
   "name": "blog-react",
   "version": "0.1.0",
   "private": true,
+  "homepage" : "https://mguillaumef.github.io/blog-react",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -17,6 +18,7 @@
     "typescript": "^3.7.5"
   },
   "scripts": {
+    "deploy": "npm run build&&gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -36,5 +38,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^2.2.0"
   }
 }
